@@ -3,102 +3,74 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>404 — this page wandered off | bliss</title>
-<link rel="icon" href="/Bliss/assets/favicon.png">
+<title>Page not found — bliss</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.png">
+<meta name="theme-color" content="#080a0e">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
 <style>
-  :root { color-scheme: dark; }
-  * { box-sizing: border-box; }
-  html, body { height: 100%; }
-  body {
-    margin: 0;
+  .not-found {
+    min-height: calc(100vh - 64px);
     display: grid;
-    place-items: center;
-    padding: 32px;
-    text-align: center;
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: #eaf4ff;
-    background:
-      radial-gradient(90% 70% at 50% -10%, #0b2a5c 0%, #06122e 45%, #040a1c 100%),
-      #040a1c;
-    overflow: hidden;
-  }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(to right, rgba(120, 180, 255, 0.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(120, 180, 255, 0.055) 1px, transparent 1px);
-    background-size: 68px 68px;
-    mask-image: radial-gradient(120% 70% at 50% 0%, #000 20%, transparent 78%);
-    -webkit-mask-image: radial-gradient(120% 70% at 50% 0%, #000 20%, transparent 78%);
-    pointer-events: none;
-  }
-  main { position: relative; max-width: 520px; }
-  img.cat {
-    width: 92px;
-    height: 92px;
-    border-radius: 26px;
-    object-fit: cover;
-    margin: 0 auto 26px;
-    box-shadow: 0 0 0 1px rgba(150, 235, 255, 0.4), 0 24px 60px -14px rgba(80, 215, 255, 0.7);
-  }
-  .code {
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #9fd9f7;
-    background: rgba(80, 180, 255, 0.08);
-    border: 1px solid rgba(120, 210, 255, 0.22);
-    border-radius: 999px;
-    padding: 5px 13px;
-    display: inline-block;
-    margin-bottom: 20px;
-  }
-  h1 {
-    margin: 0 0 14px;
-    font-size: clamp(1.9rem, 5vw, 2.6rem);
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: 1.1;
-  }
-  h1 span {
-    background: linear-gradient(100deg, #b6f7ff, #6fe3ff 34%, #8b9dff 66%, #f3a8ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-  p { margin: 0 0 28px; color: #9db0cf; line-height: 1.7; }
-  .btn {
-    display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 14px 26px;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #04121f;
-    text-decoration: none;
-    background: linear-gradient(180deg, #b7f6ff 0%, #67ddff 55%, #4cc4f2 100%);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 12px 34px -10px rgba(80, 210, 255, 0.8);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    padding: 64px 0;
   }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset, 0 18px 44px -10px rgba(80, 210, 255, 0.95); }
-  small { display: block; margin-top: 26px; font-size: 0.72rem; color: #6d86a5; }
+  .not-found-inner { max-width: 520px; }
+  .not-found-code {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--text-3);
+    margin-bottom: 24px;
+  }
+  .not-found h1 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .not-found p {
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--text-2);
+    margin-bottom: 30px;
+  }
+  .not-found-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 </style>
 </head>
 <body>
-  <main>
-    <img class="cat" src="/Bliss/assets/pfp-small.png" alt="bliss the cat">
-    <span class="code">404</span>
-    <h1>This page <span>wandered off</span>.</h1>
-    <p>Bliss looked everywhere — the archives, the #off-topic channel, even the memory vault. It's not here. Let's get you back to somewhere with vibes.</p>
-    <a class="btn" href="/Bliss/">Take me back home</a>
-    <small>bliss · the AI companion your Discord server deserves</small>
-  </main>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/Bliss/" aria-label="bliss home">
+      <img src="assets/pfp-small.png" alt="" width="28" height="28" class="brand-mark">
+      <span class="brand-name">bliss</span>
+    </a>
+    <div class="header-actions">
+      <a class="link-quiet" href="/Bliss/#commands">Commands</a>
+      <a class="btn btn-primary btn-sm" href="https://discord.com/oauth2/authorize?client_id=1551866139200585759&amp;permissions=8&amp;scope=bot%20applications.commands" target="_blank" rel="noopener">Add to Discord</a>
+    </div>
+  </div>
+</header>
+
+<main class="not-found">
+  <div class="wrap">
+    <div class="not-found-inner">
+      <p class="not-found-code">ERROR 404 · CHANNEL NOT FOUND</p>
+      <h1>This page was deleted, not sniped.</h1>
+      <p>
+        The link you followed doesn't exist — maybe a channel was renamed, or the URL lost a
+        slash. Everything worth reading is one click away.
+      </p>
+      <div class="not-found-actions">
+        <a class="btn btn-primary" href="/Bliss/">Back to the homepage</a>
+        <a class="btn btn-secondary" href="https://blissbot.best/commands" target="_blank" rel="noopener">Command index</a>
+      </div>
+    </div>
+  </div>
+</main>
+
 </body>
 </html>
