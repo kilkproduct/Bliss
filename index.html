@@ -3,836 +3,764 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bliss — The AI Companion Your Discord Server Deserves</title>
-<meta name="description" content="Bliss is the all-in-one AI-powered Discord bot for moderation, conversation, and community magic. Trusted by 84,000+ servers. Free forever.">
+<title>bliss — utility, AI and VoiceMaster for Discord</title>
+<meta name="description" content="bliss is a Discord bot for VoiceMaster, AI tools, logging, moderation, music and utility commands. 99 commands in one bot. Free to use.">
 <link rel="icon" href="assets/favicon.png">
-<meta name="theme-color" content="#040a1c">
-<meta property="og:title" content="Bliss — AI for your Discord">
-<meta property="og:description" content="Automate moderation, spark conversation, and turn dead servers into thriving communities. 84,000+ servers can't be wrong.">
+<meta name="theme-color" content="#080a0e">
+<meta property="og:title" content="bliss — utility, AI and VoiceMaster for Discord">
+<meta property="og:description" content="VoiceMaster, AI tools, detailed logging, moderation, music and 99 commands. One invite, one permissions screen.">
 <meta property="og:image" content="assets/banner.jpg">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<noscript><style>.reveal{opacity:1 !important;transform:none !important}.cookie{display:none !important}</style></noscript>
 </head>
 <body>
 
-<!-- ================= BACKGROUND FX ================= -->
-<div class="bg-mesh" aria-hidden="true">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-  <div class="orb orb-4"></div>
-</div>
-<div class="bg-grid" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
-<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<!-- ================= NAV ================= -->
-<header class="nav-wrap" id="navWrap">
-  <nav class="nav container" aria-label="Primary">
-    <a href="#top" class="brand" aria-label="Bliss home">
-      <img src="assets/pfp-small.png" alt="" class="brand-mark" width="40" height="40">
+<!-- ============ NAV ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top" aria-label="bliss home">
+      <img src="assets/pfp-small.png" alt="" width="28" height="28" class="brand-mark">
       <span class="brand-name">bliss</span>
-      <span class="brand-version">v4.2.0</span>
     </a>
 
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#features">Features</a></li>
-      <li><a href="#how">How it works</a></li>
-      <li><a href="#commands">Commands</a></li>
-      <li><a href="#testimonials">Reviews</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li class="mobile-only"><a class="btn btn-primary btn-block" href="#pricing">Add to Discord</a></li>
-    </ul>
+    <nav class="nav" id="primaryNav" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#commands">Commands</a>
+      <a href="#setup">Setup</a>
+      <a href="#faq">FAQ</a>
+    </nav>
 
-    <div class="nav-cta">
-      <a class="btn btn-ghost nav-discord" href="#" aria-label="Join our Discord">Discord</a>
-      <a class="btn btn-primary" href="#pricing">
-        <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path fill="currentColor" d="M20.3 4.5A19 19 0 0 0 15.6 3l-.3.6a14 14 0 0 1 4.1 1.4 13.7 13.7 0 0 0-11-.1A13.9 13.9 0 0 1 12.5 3.5L12.2 3a19 19 0 0 0-4.6 1.5C4.4 9.4 3.6 14.1 4 18.8a19.2 19.2 0 0 0 5.8 3l1.2-2a12 12 0 0 1-2-1l.5-.4a13.7 13.7 0 0 0 11.1 0l.5.4a12 12 0 0 1-2 1l1.1 2a19 19 0 0 0 5.9-3c.5-5.6-.8-10.3-3.8-14.3ZM9.7 16.1c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Zm5.6 0c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Z"/></svg>
+    <div class="header-actions">
+      <a class="link-quiet" href="https://discord.gg/ENtJ8sr5bu" target="_blank" rel="noopener">Support server</a>
+      <a class="btn btn-primary btn-sm" href="https://discord.com/oauth2/authorize?client_id=1551866139200585759&amp;permissions=8&amp;scope=bot%20applications.commands" target="_blank" rel="noopener">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.3 4.5A19 19 0 0 0 15.6 3l-.3.6a14 14 0 0 1 4.1 1.4 13.7 13.7 0 0 0-11-.1A13.9 13.9 0 0 1 12.5 3.5L12.2 3a19 19 0 0 0-4.6 1.5C4.4 9.4 3.6 14.1 4 18.8a19.2 19.2 0 0 0 5.8 3l1.2-2a12 12 0 0 1-2-1l.5-.4a13.7 13.7 0 0 0 11.1 0l.5.4a12 12 0 0 1-2 1l1.1 2a19 19 0 0 0 5.9-3c.5-5.6-.8-10.3-3.8-14.3ZM9.7 16.1c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Zm5.6 0c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Z"/></svg>
         Add to Discord
       </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
+        <span></span><span></span>
+      </button>
     </div>
-
-    <button type="button" class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+  </div>
 </header>
 
-<main id="top">
+<main id="main">
 
-<!-- ================= HERO ================= -->
-<section class="hero container">
-  <div class="hero-copy">
-    <a class="announce" href="#">
-      <span class="announce-tag">NEW</span>
-      <span>Bliss 4.0 is live — now with memory, vision &amp; voice</span>
-      <svg viewBox="0 0 24 24" class="ico ico-sm" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 6l6 6-6 6"/></svg>
-    </a>
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Discord bot · 99 commands</p>
+      <h1>One bot for the work<br>your server keeps<br>piling up.</h1>
+      <p class="lede">
+        VoiceMaster, AI tools, detailed logging, moderation, music and utility commands —
+        in a single bot, behind a single permissions screen. No dashboard to learn.
+      </p>
 
-    <h1>
-      Meet <span class="grad-text">bliss</span>.<br>
-      The AI companion your <span class="underline-squiggle">Discord&nbsp;server</span> deserves.
-    </h1>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1551866139200585759&amp;permissions=8&amp;scope=bot%20applications.commands" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.3 4.5A19 19 0 0 0 15.6 3l-.3.6a14 14 0 0 1 4.1 1.4 13.7 13.7 0 0 0-11-.1A13.9 13.9 0 0 1 12.5 3.5L12.2 3a19 19 0 0 0-4.6 1.5C4.4 9.4 3.6 14.1 4 18.8a19.2 19.2 0 0 0 5.8 3l1.2-2a12 12 0 0 1-2-1l.5-.4a13.7 13.7 0 0 0 11.1 0l.5.4a12 12 0 0 1-2 1l1.1 2a19 19 0 0 0 5.9-3c.5-5.6-.8-10.3-3.8-14.3ZM9.7 16.1c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Zm5.6 0c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Z"/></svg>
+          Add to Discord
+        </a>
+        <a class="btn btn-secondary" href="#commands">Browse commands</a>
+      </div>
 
-    <p class="hero-sub">
-      Automate moderation, spark conversations, and turn even the deadest server into a
-      thriving community — in under <strong>30 seconds</strong>. Powered by next-gen AI,
-      loved by <strong>84,000+ servers</strong>. No credit card. No setup. No drama.
-    </p>
-
-    <div class="hero-actions">
-      <a href="#pricing" class="btn btn-primary btn-lg">
-        <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path fill="currentColor" d="M20.3 4.5A19 19 0 0 0 15.6 3l-.3.6a14 14 0 0 1 4.1 1.4 13.7 13.7 0 0 0-11-.1A13.9 13.9 0 0 1 12.5 3.5L12.2 3a19 19 0 0 0-4.6 1.5C4.4 9.4 3.6 14.1 4 18.8a19.2 19.2 0 0 0 5.8 3l1.2-2a12 12 0 0 1-2-1l.5-.4a13.7 13.7 0 0 0 11.1 0l.5.4a12 12 0 0 1-2 1l1.1 2a19 19 0 0 0 5.9-3c.5-5.6-.8-10.3-3.8-14.3ZM9.7 16.1c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Zm5.6 0c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Z"/></svg>
-        Add to Discord — it's free
-      </a>
-      <a href="#commands" class="btn btn-glass btn-lg">
-        <span class="play-dot"><svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg></span>
-        See it in action
-      </a>
+      <p class="hero-meta">
+        <span class="live-tag"><span class="live-dot" aria-hidden="true"></span>Live</span>
+        <span class="hero-meta-text">
+          Support server &middot; <strong data-live="members">&mdash;</strong> members &middot;
+          <strong data-live="online">&mdash;</strong> online
+        </span>
+      </p>
     </div>
 
-    <div class="proof">
-      <div class="avatars" aria-hidden="true">
-        <span class="av av-a">M</span>
-        <span class="av av-b">K</span>
-        <span class="av av-c">Z</span>
-        <span class="av av-d">L</span>
-        <span class="avatar-more">+84k</span>
-      </div>
-      <div class="proof-text">
-        <div class="stars" role="img" aria-label="Rated 4.9 out of 5">
-          <svg viewBox="0 0 24 24" class="star"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
-          <svg viewBox="0 0 24 24" class="star"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
-          <svg viewBox="0 0 24 24" class="star"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
-          <svg viewBox="0 0 24 24" class="star"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
-          <svg viewBox="0 0 24 24" class="star"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
-          <span class="stars-num">4.9</span>
-        </div>
-        <p>Trusted by <strong>84,000+ servers</strong> · 12.4M messages processed</p>
-      </div>
-    </div>
-
-    <ul class="trust-row">
-      <li><svg viewBox="0 0 24 24" class="ico"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg> SOC 2 Type II</li>
-      <li><svg viewBox="0 0 24 24" class="ico"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 7v5l3 2"/></svg> 99.99% uptime</li>
-      <li><svg viewBox="0 0 24 24" class="ico"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.2"/><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M8 12h8M12 8v8"/></svg> GDPR ready</li>
-    </ul>
-  </div>
-
-  <!-- HERO CHAT MOCK -->
-  <div class="hero-visual" id="demo">
-    <div class="float-card float-a">
-      <div class="float-ico">📈</div>
-      <div>
-        <div class="float-num" data-count="2481" data-suffix="+">0</div>
-        <div class="float-label">new members this week</div>
-      </div>
-    </div>
-
-    <div class="float-card float-b">
-      <div class="pulse-ring"><span></span></div>
-      <div>
-        <div class="float-num float-num-sm">AutoMod</div>
-        <div class="float-label">12,908 raids blocked</div>
-      </div>
-    </div>
-
-    <div class="float-card float-c">
-      <div class="float-ico">✨</div>
-      <div>
-        <div class="float-num float-num-sm">AI Mood</div>
-        <div class="float-label">98% wholesome today</div>
-      </div>
-    </div>
-
-    <div class="discord-window">
-      <div class="dw-top">
-        <div class="dw-dots"><i></i><i></i><i></i></div>
-        <div class="dw-title"><span class="hash">#</span> general</div>
-        <div class="dw-live"><span class="live-dot"></span> LIVE</div>
+    <!-- product surface -->
+    <figure class="surface" aria-label="Example of a bliss conversation and the VoiceMaster control panel">
+      <div class="surface-bar">
+        <span class="surface-channel"><span class="hash">#</span> general</span>
+        <span class="surface-state"><span class="dot"></span> VoiceMaster enabled</span>
       </div>
 
-      <div class="dw-body">
+      <div class="surface-body">
         <div class="msg">
-          <div class="msg-avatar">
-            <img src="assets/pfp-small.png" alt="Bliss" width="36" height="36">
-            <span class="status-dot"></span>
-          </div>
-          <div class="msg-content">
-            <div class="msg-head">
-              <span class="msg-name">Bliss</span>
-              <span class="app-badge">
-                <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M13.5 2.5L10.7 13.1c-.2.7-1.1.8-1.5.2l-1.8-2.6-3.1 2c-.5.3-1.1-.1-1-.7l.7-3.4L9.6 4c.2-.2 0-.5-.2-.3L3 8.1l-2-.6c-.7-.2-.7-1.1 0-1.3L12.3 1.4c.7-.2 1.4.4 1.2 1.1z"/></svg>
-                APP
-              </span>
-              <span class="msg-time">Today at 3:14 AM</span>
-            </div>
-            <p class="msg-text">
-              hey <span class="mention">@alex</span> ✨ welcome to <strong>Pixel Palace</strong>!
-              I noticed you're into lo-fi — the study lounge is popping off right now. 🎧
-              Want me to ping you when movie night starts?
-            </p>
-            <div class="msg-reactions">
-              <span class="reaction active">🎧 24</span>
-              <span class="reaction">🔥 12</span>
-              <span class="reaction">🫶 8</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="msg msg-user">
-          <div class="msg-avatar avatar-user">A</div>
-          <div class="msg-content">
-            <div class="msg-head">
-              <span class="msg-name">alex</span>
-              <span class="msg-time">Today at 3:14 AM</span>
-            </div>
-            <p class="msg-text">bro how did you know i like lo-fi 😭 that's actually insane</p>
+          <div class="avatar" aria-hidden="true">M</div>
+          <div class="msg-body">
+            <div class="msg-head"><span class="msg-author">mira</span><span class="msg-time">21:04</span></div>
+            <p class="msg-line"><span class="cmd-inline">/ask</span> what should I name the study channel?</p>
           </div>
         </div>
 
         <div class="msg">
-          <div class="msg-avatar">
-            <img src="assets/pfp-small.png" alt="">
-            <span class="status-dot"></span>
-          </div>
-          <div class="msg-content">
-            <div class="typing" id="typingBubble">
-              <span class="typing-name">Bliss is thinking</span>
-              <span class="dots"><i></i><i></i><i></i></span>
+          <div class="avatar avatar-bot"><img src="assets/pfp-small.png" alt="" width="34" height="34"></div>
+          <div class="msg-body">
+            <div class="msg-head">
+              <span class="msg-author is-bot">bliss</span>
+              <span class="app-tag">APP</span>
+              <span class="msg-time">21:04</span>
             </div>
+            <p class="msg-line">A few that fit: <strong>Quiet Hours</strong>, <strong>The Reading Room</strong>, <strong>Focus Mode</strong>. Want me to rename the channel?</p>
           </div>
         </div>
-      </div>
 
-      <div class="dw-suggest">
-        <span class="suggest-label">Try</span>
-        <button type="button" class="chip" data-copy="/ask">/ask</button>
-        <button type="button" class="chip" data-copy="/imagine">/imagine</button>
-        <button type="button" class="chip" data-copy="/vibecheck">/vibecheck</button>
-        <button type="button" class="chip" data-copy="/summarize">/summarize</button>
-      </div>
+        <div class="vm">
+          <div class="vm-head">
+            <div>
+              <p class="vm-title">mira's channel</p>
+              <p class="vm-sub">VoiceMaster · temporary voice channel</p>
+            </div>
+            <span class="vm-badge"><span class="dot"></span> Live</span>
+          </div>
 
-      <div class="dw-input">
-        <span class="plus">＋</span>
-        <span class="input-placeholder">Message #general</span>
-        <span class="gift">🎁</span>
-      </div>
-    </div>
+          <div class="vm-grid">
+            <span class="vm-btn">Lock</span>
+            <span class="vm-btn">Unlock</span>
+            <span class="vm-btn">Hide</span>
+            <span class="vm-btn">Reveal</span>
+            <span class="vm-btn">Claim</span>
+            <span class="vm-btn">Rename</span>
+            <span class="vm-btn">Limit</span>
+            <span class="vm-btn">Information</span>
+            <span class="vm-btn vm-btn-danger">Delete</span>
+          </div>
 
-    <div class="glow-under" aria-hidden="true"></div>
-  </div>
-</section>
-
-<!-- ================= LOGO MARQUEE ================= -->
-<section class="marquee-section" aria-label="Communities using Bliss">
-  <p class="marquee-label">Powering conversations in the world's best communities</p>
-  <div class="marquee">
-    <div class="marquee-track">
-      <span class="mq-item">🌸 Anime Lounge</span>
-      <span class="mq-item">🎮 VALORANT Hub</span>
-      <span class="mq-item">📚 Study Together</span>
-      <span class="mq-item">🕹️ Pixel Palace</span>
-      <span class="mq-item">💻 The Coding Cave</span>
-      <span class="mq-item">🧋 Cozy Corner</span>
-      <span class="mq-item">🎨 Art Block</span>
-      <span class="mq-item">🚀 Startup Szn</span>
-      <span class="mq-item">🌸 Anime Lounge</span>
-      <span class="mq-item">🎮 VALORANT Hub</span>
-      <span class="mq-item">📚 Study Together</span>
-      <span class="mq-item">🕹️ Pixel Palace</span>
-      <span class="mq-item">💻 The Coding Cave</span>
-      <span class="mq-item">🧋 Cozy Corner</span>
-      <span class="mq-item">🎨 Art Block</span>
-      <span class="mq-item">🚀 Startup Szn</span>
-    </div>
-  </div>
-</section>
-
-<!-- ================= HOW IT WORKS ================= -->
-<section class="section container" id="how">
-  <div class="section-head">
-    <span class="eyebrow"><span class="spark">✦</span> How it works</span>
-    <h2>Live in 3 steps.<br><span class="muted-h">Genuinely 30 seconds.</span></h2>
-    <p>No dashboards to learn. No YAML. No "please contact enterprise sales". Just vibes.</p>
-  </div>
-
-  <ol class="steps">
-    <li class="step reveal">
-      <span class="step-num">01</span>
-      <div class="step-ico">🖱️</div>
-      <h3>Click “Add to Discord”</h3>
-      <p>Pick your server from the dropdown. Authorize the permissions Bliss asks for. That's the hard part done.</p>
-      <span class="step-time">~10 seconds</span>
-    </li>
-    <li class="step reveal">
-      <span class="step-num">02</span>
-      <div class="step-ico">🧠</div>
-      <h3>Bliss reads the room</h3>
-      <p>It scans your channel names, rules, and recent vibe to build a personality and a mod ruleset that fits.</p>
-      <span class="step-time">~15 seconds</span>
-    </li>
-    <li class="step reveal">
-      <span class="step-num">03</span>
-      <div class="step-ico">🎉</div>
-      <h3>Say hi</h3>
-      <p>Type <code class="inline-code">/ask hey bliss, introduce yourself</code> and watch your members lose it.</p>
-      <span class="step-time">~5 seconds</span>
-    </li>
-  </ol>
-</section>
-
-<!-- ================= FEATURES ================= -->
-<section class="section container" id="features">
-  <div class="section-head">
-    <span class="eyebrow"><span class="spark">✦</span> Features</span>
-    <h2>Everything you need.<br><span class="muted-h">Nothing you don't.</span></h2>
-    <p>One bot to replace twelve. Bliss handles moderation, engagement, and pure vibes — so you can actually enjoy your server again.</p>
-  </div>
-
-  <div class="bento">
-    <article class="card card-lg reveal">
-      <div class="card-glow"></div>
-      <div class="icon-tile">🧠</div>
-      <h3>AI that actually understands context</h3>
-      <p>Bliss reads the room. It knows the difference between banter and bullying, sarcasm and a genuine cry for help — and it responds like a human mod would.</p>
-
-      <div class="mini-chat">
-        <div class="mini-row bad">
-          <span class="mini-av">🗯️</span>
-          <span class="mini-bubble">"kys lol"</span>
-          <span class="mini-flag">Flagged · 0.4s</span>
-        </div>
-        <div class="mini-row good">
-          <span class="mini-av">💬</span>
-          <span class="mini-bubble">"this raid was so bad it killed me lmaoo"</span>
-          <span class="mini-pass">Allowed ✓</span>
+          <p class="vm-foot">Claimed by mira · deleted automatically when the channel empties</p>
         </div>
       </div>
-      <div class="card-tags"><span>Context-aware</span><span>Multilingual</span><span>False-positive safe</span></div>
-    </article>
+    </figure>
+  </div>
+</section>
 
-    <article class="card reveal">
-      <div class="icon-tile">⚡</div>
-      <h3>0.4s responses</h3>
-      <p>Faster than your average mod. Bliss replies before you finish blinking — even during peak raid hours.</p>
-      <div class="latency">
-        <div class="latency-bar"><span style="--w: 82%"></span></div>
-        <div class="latency-meta"><span>Bliss</span><strong>0.4s</strong></div>
-        <svg class="sparkline" viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#7ff0ff" stop-opacity="0.45" />
-              <stop offset="100%" stop-color="#7ff0ff" stop-opacity="0" />
-            </linearGradient>
-          </defs>
-          <path d="M0 34 L22 30 L44 36 L66 22 L88 26 L110 12 L132 18 L154 8 L176 14 L200 4 L200 44 L0 44 Z" fill="url(#sparkFill)" />
-          <path d="M0 34 L22 30 L44 36 L66 22 L88 26 L110 12 L132 18 L154 8 L176 14 L200 4" fill="none" stroke="#7ff0ff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" />
-        </svg>
-        <p class="spark-note">Response time, last 7 days · p99</p>
+<!-- ============ LIVE FROM DISCORD ============ -->
+<section class="strip" aria-labelledby="live-heading">
+  <h2 class="sr-only" id="live-heading">Live from Discord</h2>
+  <div class="wrap strip-grid">
+    <div class="strip-item">
+      <strong data-live="members">&mdash;</strong>
+      <span>members in the support server</span>
+    </div>
+    <div class="strip-item">
+      <strong data-live="online">&mdash;</strong>
+      <span>online right now</span>
+    </div>
+    <div class="strip-item">
+      <strong data-live="boosts">&mdash;</strong>
+      <span>server boosts &middot; <span data-live="tier">&mdash;</span></span>
+    </div>
+    <div class="strip-item strip-meta">
+      <span class="live-tag"><span class="live-dot" aria-hidden="true"></span><span data-live="state">Live</span></span>
+      <span class="strip-meta-text">
+        Discord public API &middot; updated <span data-live="updated">never</span>
+      </span>
+    </div>
+  </div>
+  <noscript>
+    <p class="wrap strip-noscript">These figures come from Discord's API at page load, so they stay blank without JavaScript.</p>
+  </noscript>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="section" id="features">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">01 — Features</p>
+      <h2>What bliss actually does.</h2>
+      <p class="section-sub">
+        Nine things your server would otherwise invite six different bots for — with the logs,
+        permissions and cleanup handled in the same place.
+      </p>
+    </header>
+
+    <!-- voice -->
+    <article class="feature">
+      <div class="feature-copy">
+        <p class="feature-label">VoiceMaster</p>
+        <h3>Voice channels that create and clean themselves.</h3>
+        <p>
+          Members join a hub channel and get their own temporary room, plus a control panel for
+          everything they'd otherwise need a moderator for. When the room empties, it's gone.
+        </p>
+        <ul class="ticks">
+          <li>Join-to-create hub, with public and private categories</li>
+          <li>Lock, hide, permit and reject individual members</li>
+          <li>Rename, set a limit, transfer ownership or claim an abandoned room</li>
+          <li>Automatic cleanup — nobody has to tidy the channel list</li>
+        </ul>
       </div>
-    </article>
 
-    <article class="card reveal">
-      <div class="icon-tile">🎭</div>
-      <h3>Personality, your rules</h3>
-      <p>Sweet, sassy, sarcastic, or fully unhinged. Dial in Bliss's tone with a single sentence.</p>
-      <div class="tone-row">
-        <span class="tone active">wholesome</span>
-        <span class="tone">chaotic</span>
-        <span class="tone">gremlin</span>
-      </div>
-    </article>
-
-    <article class="card reveal">
-      <div class="icon-tile">🧩</div>
-      <h3>200+ slash commands</h3>
-      <p>Games, memes, reminders, translations, image gen — all built in, all free.</p>
-      <div class="cmd-cloud">
-        <span>/ask</span><span>/imagine</span><span>/rizz</span><span>/trivia</span><span>/ship</span><span>/vibe</span>
-      </div>
-    </article>
-
-    <article class="card reveal">
-      <div class="icon-tile">🛡️</div>
-      <h3>AutoMod never sleeps</h3>
-      <p>Raid protection, spam shields, and smart bans — active 24/7 while you're asleep.</p>
-      <div class="stat-inline"><strong data-count="12908">0</strong><span>raids stopped this month</span></div>
-    </article>
-
-    <article class="card card-wide reveal">
-      <div class="card-glow"></div>
-      <div class="wide-inner">
-        <div>
-          <div class="icon-tile">🪄</div>
-          <h3>It remembers. Like, actually remembers.</h3>
-          <p>Bliss keeps a private, per-user memory of your server's inside jokes, birthdays, and ongoing lore. Ask about a bit from six months ago — it's still there.</p>
-          <ul class="check-list">
-            <li>Per-server memory vault</li>
-            <li>Opt-out anytime, GDPR compliant</li>
-            <li>Never trained on your messages</li>
+      <div class="feature-visual">
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-title">Voice channels</span>
+            <span class="panel-note">4 active</span>
+          </div>
+          <ul class="channel-list">
+            <li class="channel is-hub">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"/></svg>
+              <span>Join to Create</span>
+              <span class="channel-tag">hub</span>
+            </li>
+            <li class="channel">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"/></svg>
+              <span>mira's channel</span>
+              <span class="channel-count">2/5</span>
+            </li>
+            <li class="channel">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"/></svg>
+              <span>study room</span>
+              <span class="channel-count">4/10</span>
+            </li>
+            <li class="channel">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M4 9v6M8 6v12M12 3v18M16 6v12M20 9v6"/></svg>
+              <span>late night</span>
+              <span class="channel-count">3/∞</span>
+            </li>
           </ul>
-        </div>
-        <div class="memory-stack">
-          <div class="memory-card"><span>🧠</span><div><strong>Remembers:</strong> Alex's birthday is March 3</div></div>
-          <div class="memory-card"><span>😂</span><div><strong>Inside joke:</strong> "the soggy waffle incident"</div></div>
-          <div class="memory-card"><span>🎧</span><div><strong>Vibe:</strong> lo-fi &amp; cozy, no spoilers</div></div>
+          <div class="panel-foot">
+            <span class="chip-mono">/voicemaster setup</span>
+            <span>one command, once</span>
+          </div>
         </div>
       </div>
     </article>
 
-    <article class="card reveal">
-      <div class="icon-tile">🌍</div>
-      <h3>Scales to 1M members</h3>
-      <p>From a 12-person friend group to a mega-server. No lag, no queue, no excuses.</p>
-      <div class="scale-bar"><i style="--w: 100%"></i></div>
-    </article>
+    <!-- ai -->
+    <article class="feature feature-reverse">
+      <div class="feature-copy">
+        <p class="feature-label">AI tools</p>
+        <h3>Answers in the channel, not in a browser tab.</h3>
+        <p>
+          Ask a question, generate or edit an image, or pull text out of a screenshot without
+          leaving Discord. Daily usage is tracked per user so nobody has to guess.
+        </p>
+        <ul class="ticks">
+          <li>Ask questions and get replies in context</li>
+          <li>Generate images, or edit one you've attached</li>
+          <li>OCR — read text out of screenshots and files</li>
+          <li>Per-user daily usage, checked with your own command</li>
+        </ul>
+      </div>
 
-    <article class="card card-wide2 reveal">
-      <div class="icon-tile">🔒</div>
-      <h3>Your data stays yours</h3>
-      <p>SOC 2 Type II certified, encrypted at rest, never used for training, and deletable with a single command. Boring on purpose.</p>
-      <div class="compliance-row">
-        <span>🛡️ SOC 2</span><span>🇪🇺 GDPR</span><span>🔐 AES-256</span><span>🚫 Never trained on</span>
+      <div class="feature-visual">
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-title"># creative</span>
+            <span class="panel-note">today</span>
+          </div>
+          <div class="mini-chat">
+            <div class="mini-msg">
+              <span class="mini-cmd">/imagine</span>
+              <span>a quiet library at night, warm lamps</span>
+            </div>
+            <div class="mini-reply">
+              <div class="mini-reply-head"><img src="assets/pfp-small.png" alt="" width="20" height="20"><span>bliss</span><span class="app-tag">APP</span></div>
+              <div class="gen-frame" role="img" aria-label="Placeholder for a generated image">
+                <span>generated image</span>
+                <span class="gen-meta">1024 × 1024 · png</span>
+              </div>
+            </div>
+            <div class="mini-msg">
+              <span class="mini-cmd">/ocr</span>
+              <span>attachment · timetable.png</span>
+            </div>
+            <div class="mini-reply mini-reply-plain">
+              <div class="mini-reply-head"><img src="assets/pfp-small.png" alt="" width="20" height="20"><span>bliss</span><span class="app-tag">APP</span></div>
+              <p>“Monday — Physics 09:00, Maths 11:15, Lab 14:00…”</p>
+            </div>
+          </div>
+        </div>
       </div>
     </article>
 
+    <!-- logs / security -->
+    <article class="feature">
+      <div class="feature-copy">
+        <p class="feature-label">Logging &amp; security</p>
+        <h3>A record of everything, and a door that holds.</h3>
+        <p>
+          Audit logs for the events you usually reconstruct from memory, alongside anti-raid,
+          anti-spam, auto-moderation and verification. The log tells you what happened.
+        </p>
+        <ul class="ticks">
+          <li>Messages, members, roles, channels, invites, emojis and voice activity</li>
+          <li>Anti-raid and anti-spam rules, plus auto-moderation</li>
+          <li>Verification for new members before they can post</li>
+          <li>Per-channel command toggles, per-role command permissions</li>
+        </ul>
+      </div>
+
+      <div class="feature-visual">
+        <div class="panel">
+          <div class="panel-head">
+            <span class="panel-title"># logs</span>
+            <span class="panel-note">live</span>
+          </div>
+          <ul class="log-list">
+            <li>
+              <span class="log-time">21:02:14</span>
+              <span class="log-event">message.delete</span>
+              <span class="log-detail">#general · mira</span>
+            </li>
+            <li>
+              <span class="log-time">21:02:41</span>
+              <span class="log-event">member.join</span>
+              <span class="log-detail">@delphine · invite 3f9c</span>
+            </li>
+            <li>
+              <span class="log-time">21:03:07</span>
+              <span class="log-event">role.update</span>
+              <span class="log-detail">@member → @verified</span>
+            </li>
+            <li>
+              <span class="log-time">21:03:52</span>
+              <span class="log-event">voice.join</span>
+              <span class="log-detail">study room · 4 members</span>
+            </li>
+            <li>
+              <span class="log-time">21:04:03</span>
+              <span class="log-event">automod.flag</span>
+              <span class="log-detail">spam · 1 message removed</span>
+            </li>
+          </ul>
+          <div class="panel-foot">
+            <span class="chip-mono">/help</span>
+            <span>every log event, documented in Discord</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- small things -->
+    <article class="feature feature-reverse">
+      <div class="feature-copy">
+        <p class="feature-label">Music, quotes &amp; speech</p>
+        <h3>The small things members actually ask for.</h3>
+        <p>
+          Queue a track from any supported source, show what's playing from Last.fm, turn a real
+          message into a clean quote card, or have bliss read something out loud.
+        </p>
+        <ul class="ticks">
+          <li>Music playback with a queue you can manage</li>
+          <li>Last.fm now-playing, straight into a channel</li>
+          <li>Quote cards from real messages — or invented ones</li>
+          <li>Text-to-speech with OpenAI or ElevenLabs voices</li>
+        </ul>
+      </div>
+
+      <div class="feature-visual feature-visual-stack">
+        <div class="panel panel-compact">
+          <div class="panel-head">
+            <span class="panel-title">Now playing</span>
+            <span class="panel-note">Last.fm</span>
+          </div>
+          <div class="now-playing">
+            <div class="np-art" aria-hidden="true"></div>
+            <div class="np-copy">
+              <p class="np-title">Weightless</p>
+              <p class="np-artist">Marconi Union · 3:41</p>
+            </div>
+            <span class="np-live"><span class="dot"></span> scrobbling</span>
+          </div>
+        </div>
+
+        <div class="panel panel-compact">
+          <div class="panel-head">
+            <span class="panel-title">Quote card</span>
+            <span class="panel-note">/quote</span>
+          </div>
+          <blockquote class="quote-card">
+            <p>“we have three mods and one of them is a robot”</p>
+            <footer>— mira · <span>#general</span></footer>
+          </blockquote>
+        </div>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ================= STATS ================= -->
-<section class="stats-band">
-  <div class="container stats-grid">
-    <div class="stat reveal">
-      <div class="stat-num"><span data-count="84000" data-suffix="+">0</span></div>
-      <div class="stat-label">Discord servers</div>
+<!-- ============ CAPABILITIES + INTEGRATIONS ============ -->
+<section class="section section-alt" id="capabilities">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">02 — Everything in the box</p>
+      <h2>Replace the pile of bots.</h2>
+      <p class="section-sub">
+        One invite covers the categories below. Nothing here is a separate purchase or a
+        separate app.
+      </p>
+    </header>
+
+    <div class="cap-grid">
+      <div class="cap">
+        <h3><span class="cap-index">A</span> Utility</h3>
+        <p>Avatars, banners, user, server and role information, member counts, AFK status, latency.</p>
+      </div>
+      <div class="cap">
+        <h3><span class="cap-index">B</span> Moderation</h3>
+        <p>Purge and its variants, message snipes, role management, image-only channels, nukes.</p>
+      </div>
+      <div class="cap">
+        <h3><span class="cap-index">C</span> Management</h3>
+        <p>Command aliases, per-channel and per-role command permissions, prefixes, usage stats.</p>
+      </div>
+      <div class="cap">
+        <h3><span class="cap-index">D</span> VoiceMaster</h3>
+        <p>Temporary voice channels, private categories, ownership transfer and automatic cleanup.</p>
+      </div>
+      <div class="cap">
+        <h3><span class="cap-index">E</span> Logging</h3>
+        <p>Audit logs across messages, members, roles, channels, invites, emojis and voice.</p>
+      </div>
+      <div class="cap">
+        <h3><span class="cap-index">F</span> Security</h3>
+        <p>Anti-raid, anti-spam, auto-moderation and verification for new members.</p>
+      </div>
+      <div class="cap">
+        <h3><span class="cap-index">G</span> AI</h3>
+        <p>Questions, image generation and editing, OCR, and daily usage tracking.</p>
+      </div>
+      <div class="cap">
+        <h3><span class="cap-index">H</span> Quotes &amp; speech</h3>
+        <p>Quote cards from real messages, plus text-to-speech with OpenAI and ElevenLabs.</p>
+      </div>
+      <div class="cap">
+        <h3><span class="cap-index">I</span> Music</h3>
+        <p>Playback and queue management, with Last.fm now-playing for the channel.</p>
+      </div>
     </div>
-    <div class="stat reveal">
-      <div class="stat-num"><span data-count="12.4" data-decimals="1" data-suffix="M">0</span></div>
-      <div class="stat-label">Messages processed</div>
-    </div>
-    <div class="stat reveal">
-      <div class="stat-num"><span data-count="99.99" data-decimals="2" data-suffix="%">0</span></div>
-      <div class="stat-label">Uptime, last 90 days</div>
-    </div>
-    <div class="stat reveal">
-      <div class="stat-num"><span data-count="4.9" data-decimals="1" data-suffix="/5">0</span></div>
-      <div class="stat-label">Average rating</div>
+
+    <div class="integrations">
+      <div class="integrations-head">
+        <h3>Integrations</h3>
+        <p>Look up profiles, media and music from the platforms your members already use — without leaving the channel.</p>
+      </div>
+      <ul class="integration-list">
+        <li><span class="int-name">Spotify</span><span class="int-desc">Download a track as mp3</span></li>
+        <li><span class="int-name">SoundCloud</span><span class="int-desc">Search, stream, grab tracks</span></li>
+        <li><span class="int-name">YouTube</span><span class="int-desc">Search channels and videos</span></li>
+        <li><span class="int-name">Twitch</span><span class="int-desc">Preview live streams</span></li>
+        <li><span class="int-name">Roblox</span><span class="int-desc">Profiles, avatars, groups</span></li>
+        <li><span class="int-name">GitHub</span><span class="int-desc">Users, repos, public code</span></li>
+        <li><span class="int-name">Instagram</span><span class="int-desc">Profiles and reposts</span></li>
+        <li><span class="int-name">TikTok</span><span class="int-desc">Profiles and videos</span></li>
+        <li><span class="int-name">X</span><span class="int-desc">Profiles and posts</span></li>
+        <li><span class="int-name">Telegram</span><span class="int-desc">Users, channels and data</span></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ================= COMMANDS ================= -->
-<section class="section container" id="commands">
-  <div class="section-head">
-    <span class="eyebrow"><span class="spark">✦</span> Commands</span>
-    <h2>200+ commands.<br><span class="muted-h">Zero learning curve.</span></h2>
-    <p>Type <code class="inline-code">/</code> and let autocomplete do the rest. Every command is free on every plan.</p>
-  </div>
+<!-- ============ COMMANDS ============ -->
+<section class="section" id="commands">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">03 — Commands</p>
+      <h2>99 commands. Alphabetical, not buried.</h2>
+      <p class="section-sub">
+        A sample from each category. Every command, argument and required permission is listed
+        on the command index.
+      </p>
+    </header>
 
-  <div class="command-panel reveal">
     <div class="tabs" role="tablist" aria-label="Command categories">
-      <button type="button" class="tab active" role="tab" aria-selected="true" data-tab="ai">✨ AI</button>
-      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="fun">🎉 Fun</button>
-      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="mod">🛡️ Moderation</button>
-      <button type="button" class="tab" role="tab" aria-selected="false" data-tab="util">🔧 Utility</button>
+      <button class="tab is-active" role="tab" id="tab-utility" aria-controls="panel-utility" aria-selected="true" data-tab="utility">Utility <span class="tab-count">20</span></button>
+      <button class="tab" role="tab" id="tab-moderation" aria-controls="panel-moderation" aria-selected="false" tabindex="-1" data-tab="moderation">Moderation <span class="tab-count">20</span></button>
+      <button class="tab" role="tab" id="tab-voicemaster" aria-controls="panel-voicemaster" aria-selected="false" tabindex="-1" data-tab="voicemaster">VoiceMaster <span class="tab-count">16</span></button>
+      <button class="tab" role="tab" id="tab-management" aria-controls="panel-management" aria-selected="false" tabindex="-1" data-tab="management">Management <span class="tab-count">11</span></button>
+      <button class="tab" role="tab" id="tab-music" aria-controls="panel-music" aria-selected="false" tabindex="-1" data-tab="music">Music <span class="tab-count">4</span></button>
+      <button class="tab" role="tab" id="tab-snipe" aria-controls="panel-snipe" aria-selected="false" tabindex="-1" data-tab="snipe">Snipe <span class="tab-count">4</span></button>
+      <button class="tab" role="tab" id="tab-roles" aria-controls="panel-roles" aria-selected="false" tabindex="-1" data-tab="roles">Roles <span class="tab-count">3</span></button>
+      <button class="tab" role="tab" id="tab-customization" aria-controls="panel-customization" aria-selected="false" tabindex="-1" data-tab="customization">Customization <span class="tab-count">3</span></button>
     </div>
 
     <div class="tab-panels">
-      <div class="tab-panel active" role="tabpanel" data-panel="ai">
-        <div class="cmd"><code>/ask</code><p>Ask Bliss literally anything. It answers like a friend, not a press release.</p><span class="cmd-tag">Most used</span></div>
-        <div class="cmd"><code>/imagine</code><p>Generate stunning AI art right in chat. 4 images per prompt.</p><span class="cmd-tag">Pro</span></div>
-        <div class="cmd"><code>/summarize</code><p>Missed 400 messages? Get a 5-bullet recap with the good drama included.</p><span class="cmd-tag">Fan favorite</span></div>
-        <div class="cmd"><code>/vibecheck</code><p>Reads the last 100 messages and gives your server a mood score.</p><span class="cmd-tag">New</span></div>
-        <div class="cmd"><code>/translate</code><p>Live translation across 96 languages. Nobody gets left out.</p><span class="cmd-tag">Global</span></div>
+      <div class="tab-panel is-active" role="tabpanel" id="panel-utility" aria-labelledby="tab-utility" tabindex="0">
+        <div class="cmd"><code>/ping</code><p>Check the bot's latency.</p></div>
+        <div class="cmd"><code>/help</code><p>Extended help for any command, in Discord.</p></div>
+        <div class="cmd"><code>/userinfo</code><p>Account age, roles, join date and badges.</p></div>
+        <div class="cmd"><code>/serverinfo</code><p>Member counts, boosts, features and creation date.</p></div>
+        <div class="cmd"><code>/avatar</code><p>A user's avatar, including server-specific ones.</p></div>
+        <div class="cmd"><code>/seen</code><p>When a member was last active.</p></div>
+        <div class="cmd"><code>/afk</code><p>Set an away status to answer mentions for you.</p></div>
       </div>
 
-      <div class="tab-panel" role="tabpanel" data-panel="fun">
-        <div class="cmd"><code>/trivia</code><p>AI-generated trivia that never repeats. Leaderboards included.</p><span class="cmd-tag">Party</span></div>
-        <div class="cmd"><code>/ship</code><p>Ship two members with a compatibility score and a chaotic explanation.</p><span class="cmd-tag">Chaos</span></div>
-        <div class="cmd"><code>/rizz</code><p>Generates rizz. Results not guaranteed. Legal counsel recommended.</p><span class="cmd-tag">Unhinged</span></div>
-        <div class="cmd"><code>/story</code><p>Collaborative AI storytelling where the whole server writes the next line.</p><span class="cmd-tag">Wholesome</span></div>
-        <div class="cmd"><code>/meme</code><p>Fresh memes, tastefully curated, occasionally cursed.</p><span class="cmd-tag">Daily</span></div>
+      <div class="tab-panel" role="tabpanel" id="panel-moderation" aria-labelledby="tab-moderation" tabindex="0" hidden>
+        <div class="cmd"><code>/purge</code><p>Bulk delete, with filters for bots, files, links and more.</p></div>
+        <div class="cmd"><code>/botclear</code><p>Clear only messages sent by bots.</p></div>
+        <div class="cmd"><code>/snipe</code><p>Reveal a recently deleted message.</p></div>
+        <div class="cmd"><code>/editsnipe</code><p>Reveal recently edited messages.</p></div>
+        <div class="cmd"><code>/role</code><p>Add or remove a role on a member.</p></div>
+        <div class="cmd"><code>/imageonly</code><p>Require an image and caption in a channel.</p></div>
+        <div class="cmd"><code>/nuke</code><p>Clone and delete the current channel.</p></div>
       </div>
 
-      <div class="tab-panel" role="tabpanel" data-panel="mod">
-        <div class="cmd"><code>/automod setup</code><p>One click builds a full moderation ruleset tuned to your server's vibe.</p><span class="cmd-tag">1-click</span></div>
-        <div class="cmd"><code>/raidshield</code><p>Detects coordinated raids in 0.4s and locks your server down automatically.</p><span class="cmd-tag">Critical</span></div>
-        <div class="cmd"><code>/warn</code><p>Context-aware warnings that explain themselves. Appeals included.</p><span class="cmd-tag">Fair</span></div>
-        <div class="cmd"><code>/purge</code><p>Clean up spam without nuking the conversation. Smart filtering.</p><span class="cmd-tag">Tidy</span></div>
-        <div class="cmd"><code>/auditlog</code><p>Every action, every mod, fully logged and exportable.</p><span class="cmd-tag">SOC 2</span></div>
+      <div class="tab-panel" role="tabpanel" id="panel-voicemaster" aria-labelledby="tab-voicemaster" tabindex="0" hidden>
+        <div class="cmd"><code>/voicemaster setup</code><p>Set the hub channel and categories. Run once.</p></div>
+        <div class="cmd"><code>/voicemaster lock</code><p>Stop new members from joining your channel.</p></div>
+        <div class="cmd"><code>/voicemaster hide</code><p>Remove your channel from the channel list.</p></div>
+        <div class="cmd"><code>/voicemaster claim</code><p>Take ownership of an abandoned room.</p></div>
+        <div class="cmd"><code>/voicemaster rename</code><p>Rename your channel.</p></div>
+        <div class="cmd"><code>/voicemaster limit</code><p>Set how many people can join.</p></div>
+        <div class="cmd"><code>/voicemaster transfer</code><p>Hand the room to someone else.</p></div>
       </div>
 
-      <div class="tab-panel" role="tabpanel" data-panel="util">
-        <div class="cmd"><code>/remind</code><p>Natural-language reminders. "remind me in 20 mins to touch grass."</p><span class="cmd-tag">Helpful</span></div>
-        <div class="cmd"><code>/poll</code><p>Beautiful polls with live results and auto-close timers.</p><span class="cmd-tag">Clean</span></div>
-        <div class="cmd"><code>/welcome</code><p>Personalized welcome messages that reference each member's interests.</p><span class="cmd-tag">Growth</span></div>
-        <div class="cmd"><code>/stats</code><p>Server analytics that non-technical mods can actually read.</p><span class="cmd-tag">Insights</span></div>
-        <div class="cmd"><code>/ticket</code><p>A full support-desk system, no website required.</p><span class="cmd-tag">Support</span></div>
+      <div class="tab-panel" role="tabpanel" id="panel-management" aria-labelledby="tab-management" tabindex="0" hidden>
+        <div class="cmd"><code>/alias</code><p>Create server-wide shortcuts for commands.</p></div>
+        <div class="cmd"><code>/disablecommand</code><p>Turn a command off in one channel or everywhere.</p></div>
+        <div class="cmd"><code>/enablecommand</code><p>Turn it back on.</p></div>
+        <div class="cmd"><code>/restrictcommand</code><p>Limit a command to specific roles.</p></div>
+        <div class="cmd"><code>/fakepermissions</code><p>Let a role use commands it lacks Discord permissions for.</p></div>
+        <div class="cmd"><code>/prefix</code><p>View the server prefix.</p></div>
+        <div class="cmd"><code>/cmdz</code><p>See which commands your server actually uses.</p></div>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="panel-music" aria-labelledby="tab-music" tabindex="0" hidden>
+        <div class="cmd"><code>/play</code><p>Queue a track from any supported source.</p></div>
+        <div class="cmd"><code>/pause</code><p>Pause the current track.</p></div>
+        <div class="cmd"><code>/resume</code><p>Pick it back up.</p></div>
+        <div class="cmd"><code>/leave</code><p>Stop playback and disconnect.</p></div>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="panel-snipe" aria-labelledby="tab-snipe" tabindex="0" hidden>
+        <div class="cmd"><code>/snipe</code><p>The last deleted message in the channel.</p></div>
+        <div class="cmd"><code>/editsnipe</code><p>The last edited message, before and after.</p></div>
+        <div class="cmd"><code>/reactionsnipe</code><p>Recently removed reactions.</p></div>
+        <div class="cmd"><code>/clearsnipe</code><p>Wipe the snipe history for a channel.</p></div>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="panel-roles" aria-labelledby="tab-roles" tabindex="0" hidden>
+        <div class="cmd"><code>/role add</code><p>Give a role to a member.</p></div>
+        <div class="cmd"><code>/role remove</code><p>Take a role away.</p></div>
+        <div class="cmd"><code>/roles</code><p>List every role in the server.</p></div>
+      </div>
+
+      <div class="tab-panel" role="tabpanel" id="panel-customization" aria-labelledby="tab-customization" tabindex="0" hidden>
+        <div class="cmd"><code>/seticon</code><p>Set the server icon from an image or URL.</p></div>
+        <div class="cmd"><code>/setbanner</code><p>Set the server banner.</p></div>
+        <div class="cmd"><code>/setsplash</code><p>Set the invite splash image.</p></div>
       </div>
     </div>
 
-    <div class="command-footer">
-      <span id="copyHint">Click any command to copy it →</span>
-      <a href="#" class="text-link">View all 200 commands <span aria-hidden="true">↗</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= COMPARISON ================= -->
-<section class="section container" id="compare">
-  <div class="section-head">
-    <span class="eyebrow"><span class="spark">✦</span> Comparison</span>
-    <h2>We did the research<br><span class="muted-h">so you don't have to.</span></h2>
-    <p>We compared the 12 most popular Discord bots. Here's the honest chart (we were surprised too).</p>
-  </div>
-
-  <div class="compare-wrap reveal">
-    <table class="compare">
-      <caption class="sr-only">Comparison of Bliss against generic AI and moderation bots</caption>
-      <thead>
-        <tr>
-          <th scope="col">What you get</th>
-          <th scope="col" class="col-bliss"><img src="assets/pfp-small.png" alt=""> bliss</th>
-          <th scope="col">Generic AI Bot</th>
-          <th scope="col">Mod Bot Pro</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">AI that remembers context</th>
-          <td class="col-bliss"><span class="yes">✓</span></td>
-          <td><span class="no">✕</span></td>
-          <td><span class="no">✕</span></td>
-        </tr>
-        <tr>
-          <th scope="row">Setup time under 1 minute</th>
-          <td class="col-bliss"><span class="yes">✓</span></td>
-          <td><span class="no">✕</span></td>
-          <td><span class="no">✕</span></td>
-        </tr>
-        <tr>
-          <th scope="row">Raid protection included</th>
-          <td class="col-bliss"><span class="yes">✓</span></td>
-          <td><span class="no">✕</span></td>
-          <td><span class="yes">✓</span></td>
-        </tr>
-        <tr>
-          <th scope="row">Image generation</th>
-          <td class="col-bliss"><span class="yes">✓</span></td>
-          <td><span class="partial">Paid add-on</span></td>
-          <td><span class="no">✕</span></td>
-        </tr>
-        <tr>
-          <th scope="row">Custom personality</th>
-          <td class="col-bliss"><span class="yes">✓</span></td>
-          <td><span class="no">✕</span></td>
-          <td><span class="no">✕</span></td>
-        </tr>
-        <tr>
-          <th scope="row">Free tier that's actually usable</th>
-          <td class="col-bliss"><span class="yes">✓</span></td>
-          <td><span class="no">✕</span></td>
-          <td><span class="partial">Watermarked</span></td>
-        </tr>
-        <tr class="total">
-          <th scope="row">Monthly price</th>
-          <td class="col-bliss"><strong>$0</strong></td>
-          <td>$14.99</td>
-          <td>$9.99</td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="compare-foot">Comparison based on public pricing pages, October 2026. Competitor names withheld for legal reasons and also because we're polite.</p>
-  </div>
-</section>
-
-<!-- ================= TESTIMONIALS ================= -->
-<section class="section container" id="testimonials">
-  <div class="section-head">
-    <span class="eyebrow"><span class="spark">✦</span> Wall of love</span>
-    <h2>Servers don't just use Bliss.<br><span class="muted-h">They talk about it.</span></h2>
-    <p>84,000+ communities. 4.9/5 average. Zero paid reviews (our lawyers made us say that).</p>
-  </div>
-
-  <div class="t-grid">
-    <figure class="t-card reveal">
-      <div class="t-stars">★★★★★</div>
-      <blockquote>“Our server was so dead I was considering deleting it. Two weeks after adding Bliss we hit 4,000 members. I literally cried. Not joking.”</blockquote>
-      <figcaption>
-        <span class="av av-a" aria-hidden="true">M</span>
-        <div><strong>Mia K.</strong><span>Owner · Pixel Palace · 240k members</span></div>
-        <span class="verified" title="Verified server">✓</span>
-      </figcaption>
-    </figure>
-
-    <figure class="t-card reveal">
-      <div class="t-stars">★★★★★</div>
-      <blockquote>“As a mod team of two, Bliss basically replaced a whole staff. AutoMod caught a raid while I was asleep. Woke up to zero damage and 12 reports already handled.”</blockquote>
-      <figcaption>
-        <span class="av av-b" aria-hidden="true">K</span>
-        <div><strong>Kai R.</strong><span>Head Mod · VALORANT Hub</span></div>
-        <span class="verified" title="Verified server">✓</span>
-      </figcaption>
-    </figure>
-
-    <figure class="t-card reveal">
-      <div class="t-stars">★★★★★</div>
-      <blockquote>“The memory feature is genuinely scary (in a good way). Bliss remembered my cat's name from three months ago and asked how she was doing. I felt seen by a bot.”</blockquote>
-      <figcaption>
-        <span class="av av-c" aria-hidden="true">Z</span>
-        <div><strong>Zoë</strong><span>Member · Cozy Corner</span></div>
-        <span class="verified" title="Verified user">✓</span>
-      </figcaption>
-    </figure>
-
-    <figure class="t-card reveal">
-      <div class="t-stars">★★★★★</div>
-      <blockquote>“We compared 9 bots. Bliss won in 20 minutes. Setup took one click and the personality tweaking is actually fun. Our members think we hired a community manager.”</blockquote>
-      <figcaption>
-        <span class="av av-d" aria-hidden="true">L</span>
-        <div><strong>Leo M.</strong><span>Founder · Study Together</span></div>
-        <span class="verified" title="Verified server">✓</span>
-      </figcaption>
-    </figure>
-
-    <figure class="t-card reveal">
-      <div class="t-stars">★★★★★</div>
-      <blockquote>“The /summarize command is worth the Pro plan alone. I can catch up on a 900-message day in 15 seconds. My sanity has been restored.”</blockquote>
-      <figcaption>
-        <span class="av av-e" aria-hidden="true">A</span>
-        <div><strong>Ava T.</strong><span>Admin · The Coding Cave</span></div>
-        <span class="verified" title="Verified user">✓</span>
-      </figcaption>
-    </figure>
-
-    <figure class="t-card reveal">
-      <div class="t-stars">★★★★★</div>
-      <blockquote>“10/10 would recommend. My only complaint is that Bliss is funnier than me and my members have started noticing. Devs, please nerf.”</blockquote>
-      <figcaption>
-        <span class="av av-f" aria-hidden="true">N</span>
-        <div><strong>noah.exe</strong><span>Owner · Art Block · 61k members</span></div>
-        <span class="verified" title="Verified user">✓</span>
-      </figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ================= PRICING ================= -->
-<section class="section container" id="pricing">
-  <div class="section-head">
-    <span class="eyebrow"><span class="spark">✦</span> Pricing</span>
-    <h2>Simple pricing.<br><span class="muted-h">Insane value.</span></h2>
-    <p>Start free forever. Upgrade when your server goes full main-character.</p>
-    <div class="billing-toggle" role="group" aria-label="Billing period">
-      <button type="button" class="bill active" data-bill="monthly">Monthly</button>
-      <button type="button" class="bill" data-bill="yearly">Yearly <span class="save-pill">save 20%</span></button>
-    </div>
-  </div>
-
-  <div class="pricing-grid">
-    <article class="price-card reveal">
-      <div class="price-head">
-        <h3>Free</h3>
-        <p>For friend groups and first servers.</p>
-      </div>
-      <div class="price"><span class="amount">$0</span><span class="per">forever</span></div>
-      <a href="#" class="btn btn-glass btn-block">Add to Discord</a>
-      <ul class="check-list">
-        <li>All 200+ slash commands</li>
-        <li>Core AI chat &amp; memory</li>
-        <li>Basic AutoMod</li>
-        <li>1,000 AI messages / month</li>
-        <li>Community support</li>
-      </ul>
-    </article>
-
-    <article class="price-card featured reveal">
-      <div class="popular-ribbon">MOST POPULAR ✦</div>
-      <div class="price-head">
-        <h3>Pro <span class="pro-badge">⚡</span></h3>
-        <p>For servers that are actually growing.</p>
-      </div>
-      <div class="price"><span class="amount" data-monthly="$9" data-yearly="$7">$9</span><span class="per">/ month</span></div>
-      <a href="#" class="btn btn-primary btn-block">Start 7-day free trial</a>
-      <ul class="check-list">
-        <li>Everything in Free</li>
-        <li>Unlimited AI messages</li>
-        <li>Image generation &amp; vision</li>
-        <li>Advanced AutoMod + RaidShield</li>
-        <li>Custom personality &amp; tone</li>
-        <li>Priority support in &lt;2h</li>
-      </ul>
-      <p class="price-note">No credit card required for trial</p>
-    </article>
-
-    <article class="price-card reveal">
-      <div class="price-head">
-        <h3>Ultra</h3>
-        <p>For mega-servers and networks.</p>
-      </div>
-      <div class="price"><span class="amount" data-monthly="$29" data-yearly="$23">$29</span><span class="per">/ month</span></div>
-      <a href="#" class="btn btn-glass btn-block">Talk to sales</a>
-      <ul class="check-list">
-        <li>Everything in Pro</li>
-        <li>Up to 10 servers</li>
-        <li>Dedicated AI capacity</li>
-        <li>Custom commands &amp; API access</li>
-        <li>SLA &amp; audit exports</li>
-        <li>Dedicated success manager</li>
-      </ul>
-    </article>
-  </div>
-
-  <p class="pricing-foot">🔒 Cancel anytime · 30-day money-back guarantee · Prices in USD</p>
-</section>
-
-<!-- ================= FAQ ================= -->
-<section class="section container section-narrow" id="faq">
-  <div class="section-head">
-    <span class="eyebrow"><span class="spark">✦</span> FAQ</span>
-    <h2>Questions? <span class="grad-text">Answered.</span></h2>
-    <p>Still curious? Our team replies in under 2 hours, 7 days a week.</p>
-  </div>
-
-  <div class="faq-list">
-    <details class="faq reveal" open>
-      <summary>Is Bliss actually free?</summary>
-      <p>Yes — genuinely. Every command, including AI chat and AutoMod, is free forever with a 1,000 message monthly limit. Pro unlocks unlimited messages and image generation. No credit card is required to start.</p>
-    </details>
-    <details class="faq reveal">
-      <summary>How long does setup take?</summary>
-      <p>About 30 seconds. Click “Add to Discord”, pick your server, authorize, and Bliss is live. AutoMod and welcome messages configure themselves based on your server's existing vibe. No dashboards, no config files.</p>
-    </details>
-    <details class="faq reveal">
-      <summary>Does Bliss read all my messages?</summary>
-      <p>Only messages in channels where it's active, and only to respond or moderate. We never train models on your data, never sell it, and you can wipe your server's memory at any time with <code class="inline-code">/privacy purge</code>.</p>
-    </details>
-    <details class="faq reveal">
-      <summary>What happens if Bliss goes down?</summary>
-      <p>We run on multi-region infrastructure with automatic failover and maintain 99.99% uptime. If we ever drop below that in a billing month, Pro and Ultra subscribers get an automatic credit — no support ticket needed.</p>
-    </details>
-    <details class="faq reveal">
-      <summary>Can I customize how Bliss talks?</summary>
-      <p>Absolutely. Describe the personality in plain English — “wholesome camp counselor”, “sarcastic older sibling”, “feral goblin with a heart of gold” — and Bliss adapts instantly. You can also set per-channel tones.</p>
-    </details>
-    <details class="faq reveal">
-      <summary>Is Bliss affiliated with Discord?</summary>
-      <p>No. Bliss is an independent third-party app built on the official Discord API and fully compliant with Discord's developer terms. We're just huge fans.</p>
-    </details>
-  </div>
-</section>
-
-<!-- ================= FINAL CTA ================= -->
-<section class="section container">
-  <div class="cta-card reveal">
-    <div class="cta-orbs" aria-hidden="true"><i></i><i></i><i></i></div>
-    <img src="assets/banner.jpg" alt="" class="cta-banner" aria-hidden="true">
-    <img src="assets/pfp-small.png" alt="" class="cta-logo" width="74" height="74">
-    <h2>Your server's glow-up<br>starts in <span class="grad-text">30 seconds</span>.</h2>
-    <p>Join 84,000+ communities that stopped settling for boring.</p>
-    <div class="hero-actions center">
-      <a href="#" class="btn btn-primary btn-lg">
-        <svg viewBox="0 0 24 24" class="ico" aria-hidden="true"><path fill="currentColor" d="M20.3 4.5A19 19 0 0 0 15.6 3l-.3.6a14 14 0 0 1 4.1 1.4 13.7 13.7 0 0 0-11-.1A13.9 13.9 0 0 1 12.5 3.5L12.2 3a19 19 0 0 0-4.6 1.5C4.4 9.4 3.6 14.1 4 18.8a19.2 19.2 0 0 0 5.8 3l1.2-2a12 12 0 0 1-2-1l.5-.4a13.7 13.7 0 0 0 11.1 0l.5.4a12 12 0 0 1-2 1l1.1 2a19 19 0 0 0 5.9-3c.5-5.6-.8-10.3-3.8-14.3ZM9.7 16.1c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Zm5.6 0c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Z"/></svg>
-        Add Bliss to Discord
+    <div class="commands-foot">
+      <p>Click any command to copy it. The full index lists all 99 with their arguments and required permissions.</p>
+      <a class="btn btn-secondary btn-sm" href="https://blissbot.best/commands" target="_blank" rel="noopener">
+        Full command index
+        <svg class="icon icon-arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></svg>
       </a>
-      <a href="#" class="btn btn-glass btn-lg">Join 120k on Discord</a>
     </div>
-    <p class="cta-fine">Free forever · No credit card · Takes 30 seconds</p>
+  </div>
+</section>
+
+<!-- ============ SETUP ============ -->
+<section class="section section-alt" id="setup">
+  <div class="wrap">
+    <header class="section-head">
+      <p class="eyebrow">04 — Setup</p>
+      <h2>Three things, then you're done.</h2>
+      <p class="section-sub">
+        Everything is configured with slash commands. There is no web dashboard to sign into and
+        no config file to write.
+      </p>
+    </header>
+
+    <ol class="steps">
+      <li class="step">
+        <span class="step-num">01</span>
+        <h3>Authorize the bot</h3>
+        <p>
+          Pick a server, review the permissions Discord shows you, and approve. The default
+          invite requests administrator so every feature works immediately — you can uncheck it
+          and grant only what you plan to use.
+        </p>
+        <span class="step-note">Server Settings → Integrations manages access later</span>
+      </li>
+      <li class="step">
+        <span class="step-num">02</span>
+        <h3>Run <code>/voicemaster setup</code></h3>
+        <p>
+          Choose a hub channel and the categories new rooms should appear in. Members join the
+          hub and get a temporary channel with its own control panel; empty rooms are deleted.
+        </p>
+        <span class="step-note">Public and private categories supported</span>
+      </li>
+      <li class="step">
+        <span class="step-num">03</span>
+        <h3>Set your rules</h3>
+        <p>
+          Decide where commands can run, who can use them, and what gets logged. Aliases, channel
+          toggles and role restrictions are all individual commands, so changes are reversible.
+        </p>
+        <span class="step-note">/disablecommand · /restrictcommand · /alias</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" id="faq">
+  <div class="wrap faq-wrap">
+    <header class="section-head section-head-left">
+      <p class="eyebrow">05 — FAQ</p>
+      <h2>Questions worth asking.</h2>
+      <p class="section-sub">Anything missing is answered in the support server, usually the same day.</p>
+    </header>
+
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Is bliss free?</summary>
+        <div class="faq-body">
+          <p>
+            The core bot is free to use, and AI tools include a daily usage allowance. A small
+            number of quality-of-life extras — such as staying in a voice channel when idle —
+            are premium. There is no credit card step to get started.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What permissions does it need?</summary>
+        <div class="faq-body">
+          <p>
+            The standard invite requests administrator, which is the simplest way to make every
+            feature work out of the box. If you'd rather keep the bot on a short leash, uncheck
+            administrator on Discord's consent screen and grant the specific permissions you
+            need: manage channels for VoiceMaster, manage messages for moderation, and so on.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Does bliss read every message?</summary>
+        <div class="faq-body">
+          <p>
+            It only processes messages in channels where it is active, and only to respond,
+            moderate or log as configured. It is not trained on your messages. If you'd rather it
+            stayed out of a channel, turn commands off there with
+            <code>/disablecommand</code>.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Do I need a dashboard?</summary>
+        <div class="faq-body">
+          <p>
+            No. Setup, permissions, logging and VoiceMaster are all configured from Discord with
+            slash commands. The command index documents each one, including its arguments and the
+            permissions it requires.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I use it in just one or two channels?</summary>
+        <div class="faq-body">
+          <p>
+            Yes. Commands can be disabled per channel or restricted to specific roles, and
+            aliases keep the ones you do use short. Nothing is enabled by default in channels you
+            haven't configured.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Where do I report a bug or ask for a feature?</summary>
+        <div class="faq-body">
+          <p>
+            The <a href="https://discord.gg/ENtJ8sr5bu" target="_blank" rel="noopener">support server</a>
+            is the fastest route. Bug reports with the command and a screenshot get looked at
+            first.
+          </p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is bliss affiliated with Discord?</summary>
+        <div class="faq-body">
+          <p>
+            No. bliss is an independent third-party app built on Discord's API and developer
+            terms. Discord is a trademark of Discord Inc.
+          </p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="section cta-section">
+  <div class="wrap">
+    <div class="cta">
+      <div class="cta-copy">
+        <h2>Add it, run one command, get on with your day.</h2>
+        <p>99 commands, one invite. The bot is free to start and takes about a minute to set up.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=1551866139200585759&amp;permissions=8&amp;scope=bot%20applications.commands" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.3 4.5A19 19 0 0 0 15.6 3l-.3.6a14 14 0 0 1 4.1 1.4 13.7 13.7 0 0 0-11-.1A13.9 13.9 0 0 1 12.5 3.5L12.2 3a19 19 0 0 0-4.6 1.5C4.4 9.4 3.6 14.1 4 18.8a19.2 19.2 0 0 0 5.8 3l1.2-2a12 12 0 0 1-2-1l.5-.4a13.7 13.7 0 0 0 11.1 0l.5.4a12 12 0 0 1-2 1l1.1 2a19 19 0 0 0 5.9-3c.5-5.6-.8-10.3-3.8-14.3ZM9.7 16.1c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Zm5.6 0c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Z"/></svg>
+          Add to Discord
+        </a>
+        <a class="btn btn-secondary" href="https://discord.gg/ENtJ8sr5bu" target="_blank" rel="noopener">Join the support server</a>
+      </div>
+    </div>
   </div>
 </section>
 
 </main>
 
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-  <div class="container footer-grid">
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
     <div class="footer-brand">
-      <a href="#top" class="brand">
-        <img src="assets/pfp-small.png" alt="" class="brand-mark" width="36" height="36">
+      <a class="brand" href="#top">
+        <img src="assets/pfp-small.png" alt="" width="26" height="26" class="brand-mark">
         <span class="brand-name">bliss</span>
       </a>
-      <p>The AI companion that makes Discord feel alive again. Built with care by a very small team and one extremely confident cat.</p>
-      <div class="socials">
-        <a href="#" aria-label="Discord"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M20.3 4.5A19 19 0 0 0 15.6 3l-.3.6a14 14 0 0 1 4.1 1.4 13.7 13.7 0 0 0-11-.1A13.9 13.9 0 0 1 12.5 3.5L12.2 3a19 19 0 0 0-4.6 1.5C4.4 9.4 3.6 14.1 4 18.8a19.2 19.2 0 0 0 5.8 3l1.2-2a12 12 0 0 1-2-1l.5-.4a13.7 13.7 0 0 0 11.1 0l.5.4a12 12 0 0 1-2 1l1.1 2a19 19 0 0 0 5.9-3c.5-5.6-.8-10.3-3.8-14.3ZM9.7 16.1c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Zm5.6 0c-1.1 0-2-1-2-2.3 0-1.2.9-2.3 2-2.3s2 1 2 2.3c0 1.3-.9 2.3-2 2.3Z"/></svg></a>
-        <a href="#" aria-label="X / Twitter"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M17.5 3h3l-6.6 7.6L21.8 21h-5.9l-4.6-6-5.3 6H3l7-8.1L2.6 3h6l4.1 5.5L17.5 3zm-1 16h1.6L7.7 4.6H6L16.5 19z"/></svg></a>
-        <a href="#" aria-label="GitHub"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.3-3.4-1.3-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8 0-.7.4-1.1.6-1.4-2.2-.2-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.8-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z"/></svg></a>
-        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M16.5 2h-2.9v12.6a2.7 2.7 0 1 1-2.3-2.7V9a5.7 5.7 0 1 0 5.2 5.7V8.9a6.6 6.6 0 0 0 3.8 1.2V7.2a3.9 3.9 0 0 1-3.8-3.9V2z"/></svg></a>
-      </div>
+      <p>A Discord bot for voice channels, AI tools, logging, moderation and utility — without the bot pile.</p>
+      <p class="footer-fine">Not affiliated with Discord Inc.</p>
     </div>
 
-    <div class="footer-col">
-      <h4>Product</h4>
+    <nav class="footer-col" aria-label="Product">
+      <h3>Product</h3>
       <a href="#features">Features</a>
       <a href="#commands">Commands</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#">Changelog</a>
-      <a href="#">Status</a>
-    </div>
-    <div class="footer-col">
-      <h4>Resources</h4>
-      <a href="#faq">Help center</a>
-      <a href="#">Documentation</a>
-      <a href="#">API reference</a>
-      <a href="#">Blog</a>
-      <a href="#">Community</a>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <a href="#">About</a>
-      <a href="#">Careers <span class="hiring">We're hiring!</span></a>
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Contact</a>
-    </div>
+      <a href="#setup">Setup</a>
+      <a href="#faq">FAQ</a>
+    </nav>
 
-    <div class="footer-status">
-      <div class="status-pill"><span class="live-dot"></span> All systems operational</div>
-      <p>Uptime last 90 days: <strong>99.99%</strong></p>
-      <div class="uptime-bars" aria-hidden="true">
-        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-      </div>
+    <nav class="footer-col" aria-label="Resources">
+      <h3>Resources</h3>
+      <a href="https://blissbot.best/commands" target="_blank" rel="noopener">Command index</a>
+      <a href="https://discord.gg/ENtJ8sr5bu" target="_blank" rel="noopener">Support server</a>
+      <a href="https://discord.com/oauth2/authorize?client_id=1551866139200585759&amp;permissions=8&amp;scope=bot%20applications.commands" target="_blank" rel="noopener">Invite link</a>
+    </nav>
+
+    <div class="footer-col footer-status">
+      <h3>Live</h3>
+      <p class="status-line">
+        <span class="dot" aria-hidden="true"></span>
+        <span data-live="members">&mdash;</span> members &middot;
+        <span data-live="online">&mdash;</span> online
+      </p>
+      <p class="footer-fine">
+        Support server &middot; refreshed <span data-live="updated">never</span>
+      </p>
+      <p class="footer-fine" data-live="verified" hidden>Discord-verified app</p>
     </div>
   </div>
 
-  <div class="container footer-bottom">
-    <p>© 2026 Bliss Labs Inc. All rights reserved. Not affiliated with Discord Inc.</p>
-    <p class="made-with">Made with <span class="heart">❤</span> and an irresponsible amount of AI</p>
+  <div class="wrap footer-bottom">
+    <p>© <span id="year">2026</span> bliss</p>
+    <p class="footer-mono">built in Discord, documented in Discord</p>
   </div>
 </footer>
 
-<!-- ================= COOKIE BANNER (yes, really) ================= -->
-<aside class="cookie" id="cookieBanner" role="dialog" aria-label="Cookie preferences" hidden>
-  <div class="cookie-ico">🍪</div>
-  <div class="cookie-copy">
-    <strong>We use cookies.</strong>
-    <p>Mostly to remember you closed this banner. Some to make the graphs go up. You can manage preferences, or accept and get on with your life.</p>
-  </div>
-  <div class="cookie-actions">
-    <button type="button" class="btn btn-primary" data-cookie="accept">Accept all</button>
-    <button type="button" class="btn btn-glass" data-cookie="reject">Reject non-essential</button>
-    <button type="button" class="cookie-manage" data-cookie="manage">Manage</button>
-  </div>
-</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-<!-- ================= SOCIAL PROOF POPUP ================= -->
-<aside class="proof-pop" id="proofPop" aria-live="polite">
-  <img src="assets/pfp-small.png" alt="" class="proof-pop-ico" width="34" height="34">
-  <div class="proof-pop-copy">
-    <strong id="proofPopName">nova_png</strong>
-    <p id="proofPopText">just added Bliss to <b>Anime Lounge</b></p>
-    <span id="proofPopTime">2 minutes ago</span>
-  </div>
-  <button type="button" class="proof-pop-close" id="proofPopClose" aria-label="Dismiss notification">✕</button>
-  <div class="proof-pop-bar"><i id="proofPopBar"></i></div>
-</aside>
-
-<div class="toast" id="toast" role="status" aria-live="polite">Copied to clipboard ✓</div>
-
+<script src="stats.js" defer></script>
 <script src="script.js"></script>
 </body>
 </html>

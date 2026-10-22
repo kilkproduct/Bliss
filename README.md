@@ -1,134 +1,120 @@
-# bliss ✨ — the (intentionally) over-the-top Discord bot landing page
+# bliss
 
-A single-page, zero-build marketing site for **bliss**, the AI companion your Discord server deserves™.
-Glowing cat, glassmorphism, animated counters, fake social proof, a cookie banner — the full
-"AI-generated startup landing page" experience, hand-tuned so it's actually usable.
+A single-page site for **bliss**, a Discord bot covering VoiceMaster, AI tools, logging,
+moderation, music and utility commands.
 
-![Bliss banner](assets/banner.jpg)
+Static HTML, CSS and a small amount of JavaScript. No build step, no framework, no tracking.
 
----
+![bliss](assets/banner.jpg)
 
-## What's in here
+## Pages
 
-```
-.
-├── index.html      # all the markup + copy
-├── styles.css      # design system, layout, animations, responsive rules
-├── script.js       # interactions (no dependencies, no build step)
-├── 404.html        # custom Pages not-found page
-├── .github/
-│   └── workflows/
-│       └── pages.yml   # deploy to GitHub Pages on push to main
-└── assets/
-    ├── banner.jpg      # wide logo (og:image + faint CTA background)
-    ├── banner.png      # original supplied banner
-    ├── pfp-small.png   # 512px cat mark used throughout the page
-    ├── favicon.png     # 96px favicon
-    └── pfp.png         # original supplied profile picture
-```
+| File | Purpose |
+| --- | --- |
+| `index.html` | The landing page |
+| `styles.css` | Design tokens, layout, components, responsive rules |
+| `script.js` | Nav state, command tabs, copy-to-clipboard, footer year |
+| `stats.js` | Live member / online / boost counts from Discord's public API |
+| `404.html` | Not-found page (links assume the `/Bliss/` project path) |
 
-No frameworks, no bundler, no `node_modules`. Open `index.html` or serve the folder.
-
-## Run it locally
+## Run locally
 
 ```bash
 python3 -m http.server 8000
 # → http://localhost:8000
 ```
 
-Or any static server (`npx serve`, `php -S`, Caddy, nginx…). It also works when opened directly
-from the filesystem, though a server is nicer for the clipboard API.
+Any static server works. The page also renders without JavaScript — only the command tabs and
+copy interaction are lost.
 
-## Sections
+## Page structure
 
-1. **Hero** — headline, dual CTA, rating proof, fake live Discord chat window with floating stat cards.
-2. **Logo marquee** — infinite scroll of "communities that use Bliss".
-3. **How it works** — 3 steps, 30 seconds, no dashboards.
-4. **Features** — bento grid: context-aware AI, latency sparkline, personality dial, command cloud,
-   memory, AutoMod stats, scale, privacy.
-5. **Stats band** — count-up numbers on scroll.
-6. **Commands** — tabbed showcase (AI / Fun / Moderation / Utility), click any command to copy it.
-7. **Comparison table** — Bliss vs. two suspiciously generic competitors.
-8. **Testimonials** — masonry wall of love, all five stars, obviously.
-9. **Pricing** — Free / Pro / Ultra with a monthly↔yearly toggle.
-10. **FAQ** — details/summary accordion, one open at a time.
-11. **Final CTA + footer** — status pill, uptime bars, "we're hiring".
-12. **Extras** — cookie banner, rotating social-proof popup, toast notifications, triple-click the
-    logo for a cat-shaped easter egg.
+1. **Header** — sticky, hairline border on scroll, collapses to a menu under 900px.
+2. **Hero** — what bliss is, the invite button, and a product surface showing a conversation
+   next to the VoiceMaster control panel.
+3. **Live strip** — support-server members, online count, boosts and boost level, fetched at
+   page load with a "updated 2 min ago" stamp.
+4. **Features** — four alternating rows: VoiceMaster, AI tools, logging and security, music and
+   quotes. Each has a small interface sample rather than a screenshot.
+5. **Everything in the box** — the nine capability groups, then the integration list.
+6. **Commands** — tabbed samples from eight categories, each row copyable with a click.
+7. **Setup** — authorize, `/voicemaster setup`, then your own rules.
+8. **FAQ** — native `<details>` accordion.
+9. **CTA and footer** — invite, support server, real links only.
 
-## Interactions
+## Live stats
 
-| Thing | Behaviour |
+Nothing on the page invents a number. The only figures that change come from Discord's public
+API, requested by the browser at load (both endpoints send CORS headers and need no token):
+
+| Field | Source | Element |
+| --- | --- | --- |
+| Members | `GET /api/v10/invites/ENtJ8sr5bu?with_counts=true` → `approximate_member_count` | `[data-live="members"]` |
+| Online | same request → `approximate_presence_count` | `[data-live="online"]` |
+| Boosts | same request → `guild.premium_subscription_count` | `[data-live="boosts"]` |
+| Boost level | same request → `guild.premium_tier` | `[data-live="tier"]` |
+| Verified app | `GET /api/v10/applications/1551866139200585759/rpc` → `is_verified` | `[data-live="verified"]` |
+| Timestamp | local clock | `[data-live="updated"]`, `[data-live="state"]` |
+
+Behaviour:
+
+- Successful results are cached in `sessionStorage` for 5 minutes, so a visitor doesn't hit
+  Discord's rate limit by reloading.
+- If the request fails and cached data exists, the page shows it marked **Last known** with its
+  age. If there is no cache, the fields stay as em dashes and the label reads **Unavailable** —
+  the layout keeps its shape either way.
+- `window` is untouched; configuration lives in the `CONFIG` block at the top of `stats.js`.
+
+To use your own numbers instead (for example a `/stats.json` exposing the bot's real guild and
+user counts), set `endpoint` in `CONFIG`. Any of these keys may be present:
+
+```json
+{ "members": 180, "online": 37, "boosts": 15, "tier": 3, "servers": 31, "users": 2000, "verified": true }
+```
+
+Note that the bot's own guild/user totals are **not** publicly readable — Discord only exposes
+them to the application owner (via a bot token) or through bot-list APIs that require a key.
+Hence the page shows the support server's live numbers rather than a made-up install count.
+
+## Design notes
+
+- **Palette:** near-black (`#080a0e`), two greys for text, hairlines at 7–13% white, and a single
+  desaturated cyan (`#8fd8f2`) used for accents and focus rings. No gradients over text, no
+  glass panels, no glow, no floating orbs.
+- **Type:** Instrument Sans for everything, JetBrains Mono for commands, log lines, indices and
+  small labels. Both from Google Fonts with system fallbacks.
+- **Layout:** 1140px max width, hairline separators, numbered sections, and interface samples
+  built from divs so they stay crisp at any size and never lie about a screenshot's contents.
+- **Motion:** only the header border and hover states; everything is disabled under
+  `prefers-reduced-motion`.
+- **Tokens** live in `:root` at the top of `styles.css`.
+
+Copy is deliberately plain. Counts of things that don't change (99 commands, 10 integrations,
+nine capability groups) are written in the markup; anything that does change is fetched live and
+never hardcoded. The invite URL, support server and command index point at real destinations;
+there are no placeholder `#` links.
+
+## Deploying
+
+`.github/workflows/pages.yml` publishes the site to GitHub Pages on every push to `main`:
+
+1. copies `index.html`, `styles.css`, `script.js`, `stats.js`, `404.html` and the web assets
+   into `_site/`
+2. adds `.nojekyll`
+3. uploads the artifact and deploys it with `actions/deploy-pages`
+
+Use **Settings → Pages → Source: GitHub Actions** once per repository. Any other static host can
+serve the same files.
+
+## Assets
+
+| File | Use |
 | --- | --- |
-| Nav | Sticky, blurs on scroll, hamburger menu under 960px |
-| Reveals | `IntersectionObserver` + staggered fade-up |
-| Counters | Ease-out count-up, respects `prefers-reduced-motion` |
-| Command chips | Click to copy the slash command, toast confirmation |
-| Tabs | Keyboard-focusable buttons, swap command panels |
-| Billing toggle | Rewrites `$9 → $7`, `$29 → $23` |
-| Cookie banner | Session-scoped, Accept / Reject / Manage all "work" |
-| Social proof | Rotates every ~9.5s once the cookie banner is gone; closable |
-| Cursor | Soft glow follows the pointer, cards get a spotlight highlight |
-| Logo ×3 | Emoji confetti + a small congratulations |
+| `assets/pfp-small.png` | Brand mark and bot avatar |
+| `assets/favicon.png` | Favicon |
+| `assets/banner.jpg` | Open Graph image |
+| `assets/banner.png`, `assets/pfp.png` | Original supplied artwork |
 
-## Deploying (GitHub Pages)
+## Note
 
-The site ships with a workflow at `.github/workflows/pages.yml` that publishes it to
-**<https://kilkproduct.github.io/Bliss/>**.
-
-- **Triggers:** every push to `main`, plus manual runs via *Actions → Deploy to GitHub Pages → Run workflow*.
-- **How it works:** the build job copies `index.html`, `styles.css`, `script.js`, `404.html` and the
-  web-optimised assets into a `_site/` folder (with a `.nojekyll`), uploads it as a Pages artifact,
-  then `actions/deploy-pages` publishes it — no build tools, no `npm install`.
-- **One-time setup** (already done for this repo): *Settings → Pages → Build and deployment →
-  Source: GitHub Actions*.
-- **Permissions:** `contents: read`, `pages: write`, `id-token: write`, in a `pages` concurrency
-  group so overlapping deploys queue instead of racing.
-- **Custom 404:** `404.html` picks up the cat, the mesh background and a "wandered off" message.
-  Its asset links use the `/Bliss/` project-path prefix — switch them to `/` if you move to a
-  custom domain.
-
-Any other static host works too: build the same `_site/` folder and serve it.
-
-## Hooking it up to a real bot
-
-Every CTA currently points at `#` and shows a polite "this is a demo" toast. Drop your real
-invite URL into the relevant anchors in `index.html`:
-
-```html
-<a class="btn btn-primary" href="https://discord.com/oauth2/authorize?client_id=YOUR_ID&scope=bot+applications.commands">Add to Discord</a>
-```
-
-Grepping for `href="#"` finds all of them; the placeholder toast handler in `script.js` only fires
-for links that still have `href="#"`.
-
-## Customising the look
-
-All colours and shared values live in `:root` at the top of `styles.css`:
-
-```css
---bg:    #040a1c;  /* page background */
---cyan:  #7ff0ff;  /* primary glow  */
---violet:#9a7cff;  /* secondary     */
---pink:  #ff82dd;  /* tertiary      */
---grad:  linear-gradient(100deg, #b6f7ff, #6fe3ff, #8b9dff, #f3a8ff);
-```
-
-Swapping `--grad` re-themes the gradient text, primary buttons, bars and the comparison column.
-
-## Notes
-
-- **Fictional data.** 84,000 servers, 12.4M messages, 4.9/5 reviews, the comparison table and the
-  social-proof popup are all made up for the bit. Replace them with real numbers before launch, or
-  keep the joke and don't bill anyone.
-- **Fonts** come from Google Fonts (Inter + JetBrains Mono) with a system fallback stack.
-- **Accessibility:** semantic landmarks, skip-free but keyboard-navigable, `aria-selected` tabs,
-  visible labels, `prefers-reduced-motion` support, and a `<noscript>` fallback so the page isn't
-  invisible without JS.
-- **Assets** are the two supplied images (`bliss_banner.png`, `bliss_pfp.png`), copied into `assets/`
-  along with a compressed banner and 512px/96px cuts of the cat mark so the page stays light.
-- Not affiliated with Discord. Please don't actually ship the fake SOC 2 badge to production.
-
----
-
-Made with ❤ and an irresponsible amount of AI.
+bliss is not affiliated with Discord Inc. Discord is a trademark of Discord Inc.
