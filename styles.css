@@ -612,6 +612,17 @@ ul { margin: 0; padding: 0; list-style: none; }
   border: 1px solid rgba(140, 195, 255, 0.16);
 }
 .typing-name { font-size: 0.7rem; color: #9fbde0; }
+.typing { min-height: 40px; cursor: default; }
+.typing.is-reply {
+  background: rgba(90, 200, 255, 0.1);
+  border-color: rgba(140, 225, 255, 0.3);
+}
+.typing .reply-text {
+  font-size: 0.83rem;
+  line-height: 1.5;
+  color: #cfe8ff;
+  animation: fadeUp 0.35s ease both;
+}
 .dots { display: inline-flex; gap: 3px; }
 .dots i {
   width: 4px;
@@ -732,6 +743,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: flex;
   gap: 48px;
   width: max-content;
+  padding-right: 48px; /* keeps the -50% loop perfectly seamless */
   padding-bottom: 26px;
   animation: marquee 38s linear infinite;
 }

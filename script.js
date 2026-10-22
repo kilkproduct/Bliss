@@ -324,6 +324,30 @@
     });
   }
 
+/* ---------- hero chat: bliss "thinks" then answers ---------- */
+  const typing = document.getElementById("typingBubble");
+  if (typing && !prefersReduced) {
+    const original = typing.innerHTML;
+    const replies = [
+      "noted 🎧 saving you a seat by the speakers",
+      "also, movie night is Friday 9pm — want a ping?",
+      "i'm keeping the good memories, not the messy ones 🫶",
+    ];
+    let step = 0;
+    const loopChat = () => {
+      typing.classList.add("is-reply");
+      typing.innerHTML = `<span class="reply-text">${replies[step % replies.length]}</span>`;
+      step += 1;
+      setTimeout(() => {
+        typing.classList.remove("is-reply");
+        typing.innerHTML = original;
+        setTimeout(loopChat, 3200);
+      }, 4200);
+    };
+    setTimeout(loopChat, 2600);
+    typing.addEventListener("click", () => toast("That's the demo chat — the real Bliss replies here ✨"));
+  }
+
   /* ---------- live-ish jitter on "servers" number ---------- */
   const statEls = document.querySelectorAll(".stat-num span[data-count='84000']");
   if (statEls.length && !prefersReduced) {
