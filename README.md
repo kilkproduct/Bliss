@@ -15,6 +15,10 @@ Glowing cat, glassmorphism, animated counters, fake social proof, a cookie banne
 ├── index.html      # all the markup + copy
 ├── styles.css      # design system, layout, animations, responsive rules
 ├── script.js       # interactions (no dependencies, no build step)
+├── 404.html        # custom Pages not-found page
+├── .github/
+│   └── workflows/
+│       └── pages.yml   # deploy to GitHub Pages on push to main
 └── assets/
     ├── banner.jpg      # wide logo (og:image + faint CTA background)
     ├── banner.png      # original supplied banner
@@ -66,6 +70,25 @@ from the filesystem, though a server is nicer for the clipboard API.
 | Social proof | Rotates every ~9.5s once the cookie banner is gone; closable |
 | Cursor | Soft glow follows the pointer, cards get a spotlight highlight |
 | Logo ×3 | Emoji confetti + a small congratulations |
+
+## Deploying (GitHub Pages)
+
+The site ships with a workflow at `.github/workflows/pages.yml` that publishes it to
+**<https://kilkproduct.github.io/Bliss/>**.
+
+- **Triggers:** every push to `main`, plus manual runs via *Actions → Deploy to GitHub Pages → Run workflow*.
+- **How it works:** the build job copies `index.html`, `styles.css`, `script.js`, `404.html` and the
+  web-optimised assets into a `_site/` folder (with a `.nojekyll`), uploads it as a Pages artifact,
+  then `actions/deploy-pages` publishes it — no build tools, no `npm install`.
+- **One-time setup** (already done for this repo): *Settings → Pages → Build and deployment →
+  Source: GitHub Actions*.
+- **Permissions:** `contents: read`, `pages: write`, `id-token: write`, in a `pages` concurrency
+  group so overlapping deploys queue instead of racing.
+- **Custom 404:** `404.html` picks up the cat, the mesh background and a "wandered off" message.
+  Its asset links use the `/Bliss/` project-path prefix — switch them to `/` if you move to a
+  custom domain.
+
+Any other static host works too: build the same `_site/` folder and serve it.
 
 ## Hooking it up to a real bot
 
